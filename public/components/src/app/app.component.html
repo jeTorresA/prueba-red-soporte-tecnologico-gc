@@ -1,1 +1,135 @@
-app works
+<div class="container">
+    <app-edit *ngIf="goToEdit" [computador]="computadorToEdit" (stateEdit)="onStateEdit($event)"></app-edit>
+    <div *ngIf="!goToEdit">
+      <div class="display-flex mb-4" style="height: 40px; width: 100%;">
+        <h6 style="flex: 1 1 auto;">Registro computadores</h6>
+        <img src="../assets/gc-icon.png" style="height: 100%;">
+      </div>
+      <!-- Formulario de inserción -->
+      <form id="register-form" class="row" (ngSubmit)="onAddOne()" [formGroup]="registerForm">
+        <!-- gce_nombre_equipo -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+          <input class="form-control" type="text" name="gce_nombre_equipo" placeholder="Nombre del equipo" formControlName="gce_nombre_equipo">
+          <div *ngIf="registerForm.get('gce_nombre_equipo')?.touched && registerForm.get('gce_nombre_equipo')?.errors?.['required']" 
+          class="alert alert-danger">Este campo es requierido</div>
+      </div>
+        <!-- gce_board -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+          <input class="form-control" type="text" name="gce_board" placeholder="Board" formControlName="gce_board">
+          <div *ngIf="registerForm.get('gce_board')?.touched && registerForm.get('gce_board')?.errors?.['required']" 
+          class="alert alert-danger">Este campo es requierido</div>
+      </div>
+        <!-- gce_case -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+          <input class="form-control" type="text" name="gce_case" placeholder="Case" formControlName="gce_case">
+          <div *ngIf="registerForm.get('gce_case')?.touched && registerForm.get('gce_case')?.errors?.['required']" 
+          class="alert alert-danger">Este campo es requierido</div>
+      </div>
+        <!-- gce_procesador -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+          <input class="form-control" type="text" name="gce_procesador" placeholder="Procesador" formControlName="gce_procesador">
+          <div *ngIf="registerForm.get('gce_procesador')?.touched && registerForm.get('gce_procesador')?.errors?.['required']" 
+          class="alert alert-danger">Este campo es requierido</div>
+      </div>
+        <!-- gce_grafica -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+          <input class="form-control" type="text" name="gce_grafica" placeholder="Gráfica" formControlName="gce_grafica">
+          <div *ngIf="registerForm.get('gce_grafica')?.touched && registerForm.get('gce_grafica')?.errors?.['required']" 
+          class="alert alert-danger">Este campo es requierido</div>
+      </div>
+        <!-- gce_ram -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+          <input class="form-control" type="text" name="gce_ram" placeholder="Ram" formControlName="gce_ram">
+          <div *ngIf="registerForm.get('gce_ram')?.touched && registerForm.get('gce_ram')?.errors?.['required']" 
+          class="alert alert-danger">Este campo es requierido</div>
+      </div>
+        <!-- gce_disco_duro -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+          <input class="form-control" type="text" name="gce_disco_duro" placeholder="Disco" formControlName="gce_disco_duro">
+          <div *ngIf="registerForm.get('gce_disco_duro')?.touched && registerForm.get('gce_disco_duro')?.errors?.['required']" 
+          class="alert alert-danger">Este campo es requierido</div>
+      </div>
+        <!-- gce_teclado -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+          <input class="form-control" type="text" name="gce_teclado" placeholder="Teclado" formControlName="gce_teclado">
+          <div *ngIf="registerForm.get('gce_teclado')?.touched && registerForm.get('gce_teclado')?.errors?.['required']" 
+          class="alert alert-danger">Este campo es requierido</div>
+      </div>
+        <!-- gce_mouse -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+          <input class="form-control" type="text" name="gce_mouse" placeholder="Mouse" formControlName="gce_mouse">
+          <div *ngIf="registerForm.get('gce_mouse')?.touched && registerForm.get('gce_mouse')?.errors?.['required']" 
+          class="alert alert-danger">Este campo es requierido</div>
+      </div>
+        <!-- gce_pantalla -->
+        <div class="mb-3 col-sm-6 col-lg-6">
+          <input class="form-control" type="text" name="gce_pantalla" placeholder="Pantalla" formControlName="gce_pantalla">
+          <div *ngIf="registerForm.get('gce_pantalla')?.touched && registerForm.get('gce_pantalla')?.errors?.['required']" 
+          class="alert alert-danger">Este campo es requierido</div>
+      </div>
+        <!-- gce_estado -->
+        <label class="mb-3 col-sm-6 col-lg-6 position-relative">
+          <div class="position-absolute">Estado</div>
+          <select class="form-select" name="gce_estado" formControlName="gce_estado">
+            <option value="0">Inactivo</option>
+            <option value="1" selected>Activo</option>
+          </select>
+        </label>
+        <div class="col-12 mb-3 display-grid">
+          <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">
+            <i class="fas fa-plus-square me-2 vertical-align-middle" style="font-size: 1.2em;"></i>
+            Agregar
+          </button>
+        </div>
+      </form>
+      
+      <h6 class="ms-5">Computadores</h6>
+      <!-- Listado -->
+      <div class="card">
+        <div class="card-body">
+          <table id="list-table" class="table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Board</th>
+                <th>Case</th>
+                <th>Procesador</th>
+                <th>Gráfica</th>
+                <th>Ram</th>
+                <th>Disco duro</th>
+                <th>Teclado</th>
+                <th>Mouse</th>
+                <th>Pantalla</th>
+                <th>Estado</th>
+                <th>Acciones</th>              
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let computador of computadores" [ngClass]="{'inactive-pc' : (computador.gce_estado === '0')}">
+                  <td>{{ computador.gce_nombre_equipo | firstToUpperCase }}</td>
+                  <td>{{ computador.gce_board | firstToUpperCase }}</td>
+                  <td>{{ computador.gce_case | firstToUpperCase }}</td>
+                  <td>{{ computador.gce_procesador | firstToUpperCase }}</td>
+                  <td>{{ computador.gce_grafica | firstToUpperCase }}</td>
+                  <td>{{ computador.gce_ram | firstToUpperCase }}</td>
+                  <td>{{ computador.gce_disco_duro | firstToUpperCase }}</td>
+                  <td>{{ computador.gce_teclado | firstToUpperCase }}</td>
+                  <td>{{ computador.gce_mouse | firstToUpperCase }}</td>
+                  <td>{{ computador.gce_pantalla | firstToUpperCase }}</td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch"  
+                      [checked]="(computador.gce_estado === '1')" (click)="onUpdateStatus(computador)">
+                    </div>
+                  </td>
+                  <td>
+                    <i class="bi bi-pencil-square edit-icon" id="icon-edit" (click)="onGoToEdit(computador)"></i>
+                    <i class="bi bi-trash delete-icon" (click)="onDeleteOne(computador)"></i>
+                  </td>
+              </tr>
+            </tbody>
+          </table>    
+        </div>
+      </div>
+    </div>    
+</div>

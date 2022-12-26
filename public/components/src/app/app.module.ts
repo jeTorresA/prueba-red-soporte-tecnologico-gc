@@ -5,16 +5,22 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EditComponent } from './edit/edit.component';
+import { FirstToUpperCasePipe } from './pipes/first-to-upper-case.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EditComponent,
+    FirstToUpperCasePipe,   
   ],
   imports: [
     BrowserAnimationsModule,
     HttpClientModule,
     BrowserModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

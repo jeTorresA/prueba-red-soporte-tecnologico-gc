@@ -79,7 +79,7 @@ class Caracteristicas extends Connection
         } catch (\Throwable $th) {
             return ["status" => 200, "response" => false, "message" => 'No es posible consultar los registros: ' . $th->getMessage()];
         }
-    }
+    }   
 
     /** Guarda registros en la tabla de características */
     public function save()
@@ -113,6 +113,83 @@ class Caracteristicas extends Connection
         } catch (\Throwable $th) {
             return ["status" => 200, "response" => false, "message" => 'No es posible insertar el registro: ' . $th->getMessage()];
         }
+    }
+
+    /** Actualiza los regsitros en la tabLa de características */
+    public function update($type) 
+    {
+        if($type == "update_status"){
+            $query = "UPDATE `gc_equipos`.`gce_caracteristicas` SET `gce_caracteristicas`.`gce_estado` = :gce_estado WHERE `gce_caracteristicas`.`gce_id` = :gce_id";
+            
+            $sql = $this->DB->prepare($query);
+            
+            $sql->bindValue(":gce_id", $this->gce_id, PDO::PARAM_INT);
+            $sql->bindValue(":gce_estado", $this->gce_estado, PDO::PARAM_STR);
+        }
+
+        if($type == "update_all"){
+            $query = "UPDATE `gc_equipos`.`gce_caracteristicas` SET
+             `gce_caracteristicas`.`gce_nombre_equipo` = :gce_nombre_equipo,
+             `gce_caracteristicas`.`gce_board` = :gce_board,
+             `gce_caracteristicas`.`gce_case` = :gce_case,
+             `gce_caracteristicas`.`gce_procesador` = :gce_procesador,
+             `gce_caracteristicas`.`gce_grafica` = :gce_grafica,
+             `gce_caracteristicas`.`gce_ram` = :gce_ram,
+             `gce_caracteristicas`.`gce_disco_duro` = :gce_disco_duro,
+             `gce_caracteristicas`.`gce_teclado` = :gce_teclado,
+             `gce_caracteristicas`.`gce_mouse` = :gce_mouse,
+             `gce_caracteristicas`.`gce_pantalla` = :gce_pantalla,
+             `gce_caracteristicas`.`gce_estado` = :gce_estado
+            WHERE `gce_caracteristicas`.`gce_id` = :gce_id";
+
+            $sql = $this->DB->prepare($query);
+
+            $sql->bindValue(":gce_nombre_equipo", $this->gce_nombre_equipo, PDO::PARAM_STR);
+            $sql->bindValue(":gce_board", $this->gce_board, PDO::PARAM_STR);
+            $sql->bindValue(":gce_case", $this->gce_case, PDO::PARAM_STR);
+            $sql->bindValue(":gce_procesador", $this->gce_procesador, PDO::PARAM_STR);
+            $sql->bindValue(":gce_grafica", $this->gce_grafica, PDO::PARAM_STR);
+            $sql->bindValue(":gce_ram", $this->gce_ram, PDO::PARAM_STR);
+            $sql->bindValue(":gce_disco_duro", $this->gce_disco_duro, PDO::PARAM_STR);
+            $sql->bindValue(":gce_teclado", $this->gce_teclado, PDO::PARAM_STR);
+            $sql->bindValue(":gce_mouse", $this->gce_mouse, PDO::PARAM_STR);
+            $sql->bindValue(":gce_pantalla", $this->gce_pantalla, PDO::PARAM_STR);
+            $sql->bindValue(":gce_estado", $this->gce_estado, PDO::PARAM_STR);
+
+            $sql->bindValue(":gce_id", $this->gce_id, PDO::PARAM_INT);
+
+        }
+
+        try {
+            $sql->execute();
+            $this->clear();
+
+            $this->gce_id = $this->gce_id;;
+            return $this->get();
+        } catch (\Throwable $th) {
+            return ["status" => 200, "response" => false, "message" => 'No fue posible actualizar el registro: ' . $th->getMessage()];
+        }
+
+    }
+
+    public function delete()
+    {
+        $query = "DELETE FROM `gc_equipos`.`gce_caracteristicas` WHERE `gce_caracteristicas`.`gce_id` = :gce_id";
+
+        $sql = $this->DB->prepare($query);
+
+        $sql->bindValue(":gce_id", $this->gce_id, PDO::PARAM_INT);
+
+        try {
+            $sql->execute();
+            $this->clear();
+
+            return ["status" => 200, "response" => true, "message" => "El registro ha sido elimado con exito"];
+
+        } catch (\Throwable $th) {
+            return ["status" => 200, "response" => false, "message" => "No fue posible eliminar el registro : " . $th->getMessage()];
+        }
+
     }
 
     /** Limpia los valores del modelo */

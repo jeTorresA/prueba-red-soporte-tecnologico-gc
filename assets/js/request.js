@@ -58,7 +58,7 @@ class ApiRequest {
         /** Parámetros del formulario */
         const request = Object.entries(parameters).reduce((form, [key, value]) => (form.append(key, value), form), new FormData());
         http.send(request);
-      } else if (typeof parameters === 'string') { // Peticion GET
+      } else if (typeof parameters === 'string') { // Peticion GET        
         http.send();
       } else { // Formato no permitido
         console.error(`El parámetro {parameters} recibe ${action === 'POST' ? 'un objeto' : 'una cadena de texto'}`);

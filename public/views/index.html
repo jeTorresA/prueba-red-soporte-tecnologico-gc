@@ -9,6 +9,7 @@
   <title>Gestión de equipos</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="public/views/style.css">
@@ -96,14 +97,86 @@
               <th>Mouse</th>
               <th>Pantalla</th>
               <th>Estado</th>
+              <th>Acciones</th>              
             </tr>
           </thead>
           <tbody></tbody>
-        </table>
+        </table>    
       </div>
     </div>
   </div>
 
+   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">editar rol</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">            
+            <!-- Formulario de inserción -->
+            <form id="edit-form" class="row" onsubmit="Computador.update(event)">
+                <!-- id_equipo -->
+                <div class="mb-3 col-lg-4 col-sm-6">
+                  <input required class="form-control" type="text" name="gce_id_edit" placeholder="ID del equipo" disabled>
+                </div>
+              <!-- gce_nombre_equipo -->
+              <div class="mb-3 col-lg-4 col-sm-6">
+                <input required class="form-control" type="text" name="gce_nombre_equipo_edit" placeholder="Nombre del equipo">
+              </div>
+              <!-- gce_board -->
+              <div class="mb-3 col-lg-4 col-sm-6">
+                <input required class="form-control" type="text" name="gce_board_edit" placeholder="Board">
+              </div>
+              <!-- gce_case -->
+              <div class="mb-3 col-lg-4 col-sm-6">
+                <input required class="form-control" type="text" name="gce_case_edit" placeholder="Case">
+              </div>
+              <!-- gce_procesador -->
+              <div class="mb-3 col-lg-4 col-sm-6">
+                <input required class="form-control" type="text" name="gce_procesador_edit" placeholder="Procesador">
+              </div>
+              <!-- gce_grafica -->
+              <div class="mb-3 col-lg-4 col-sm-6">
+                <input required class="form-control" type="text" name="gce_grafica_edit" placeholder="Gráfica">
+              </div>
+              <!-- gce_ram -->
+              <div class="mb-3 col-lg-4 col-sm-6">
+                <input required class="form-control" type="text" name="gce_ram_edit" placeholder="Ram">
+              </div>
+              <!-- gce_disco_duro -->
+              <div class="mb-3 col-lg-4 col-sm-6">
+                <input required class="form-control" type="text" name="gce_disco_duro_edit" placeholder="Disco">
+              </div>
+              <!-- gce_teclado -->
+              <div class="mb-3 col-lg-4 col-sm-6">
+                <input required class="form-control" type="text" name="gce_teclado_edit" placeholder="Teclado">
+              </div>
+              <!-- gce_mouse -->
+              <div class="mb-3 col-lg-4 col-sm-6">
+                <input required class="form-control" type="text" name="gce_mouse_edit" placeholder="Mouse">
+              </div>
+              <!-- gce_pantalla -->
+              <div class="mb-3 col-lg-4 col-sm-6">
+                <input required class="form-control" type="text" name="gce_pantalla_edit" placeholder="Pantalla">
+              </div>
+              <!-- gce_estado -->
+              <label class="mb-3 col-lg-4 col-sm-6 position-relative">
+                <div class="position-absolute">Estado</div>
+                <select class="form-select" name="gce_estado_edit">
+                  <option value="0">Inactivo</option>
+                  <option value="1" selected>Activo</option>
+                </select>
+              </label>   
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-left" data-bs-dismiss="modal">Guardar</button>
+              </div>        
+            </form>
+        </div>        
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
     integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"

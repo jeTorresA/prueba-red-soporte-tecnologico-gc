@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="display-flex mb-4" style="height: 40px; width: 100%;">
+        <h6 style="flex: 1 1 auto;">editar computadores</h6>
+        <img src="../assets/gc-icon.png" style="height: 100%;">
+    </div>
+    <!-- Formulario de inserción -->
+    <form id="register-form" class="row" (ngSubmit)="onEditOne()" [formGroup]="editForm">
+        <!-- gce_nombre_equipo -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+            <input class="form-control" type="text" name="gce_nombre_equipo_edit" placeholder="Nombre del equipo" formControlName="gce_nombre_equipo_edit">
+            <div *ngIf="editForm.get('gce_nombre_equipo_edit')?.touched && editForm.get('gce_nombre_equipo_edit')?.errors?.['required']" 
+            class="alert alert-danger">Este campo es requierido</div>
+        </div>
+        <!-- gce_board -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+            <input class="form-control" type="text" name="gce_board_edit" placeholder="Board" formControlName="gce_board_edit">
+            <div *ngIf="editForm.get('gce_board_edit')?.touched && editForm.get('gce_board_edit')?.errors?.['required']" 
+            class="alert alert-danger">Este campo es requierido</div>
+        </div>
+        <!-- gce_case -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+            <input class="form-control" type="text" name="gce_case_edit" placeholder="Case" formControlName="gce_case_edit">
+            <div *ngIf="editForm.get('gce_case_edit')?.touched && editForm.get('gce_case_edit')?.errors?.['required']" 
+            class="alert alert-danger">Este campo es requierido</div>
+        </div>
+        <!-- gce_procesador -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+            <input class="form-control" type="text" name="gce_procesador_edit" placeholder="Procesador" formControlName="gce_procesador_edit">
+            <div *ngIf="editForm.get('gce_procesador_edit')?.touched && editForm.get('gce_procesador_edit')?.errors?.['required']" 
+            class="alert alert-danger">Este campo es requierido</div>
+        </div>
+        <!-- gce_grafica -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+            <input class="form-control" type="text" name="gce_grafica_edit" placeholder="Gráfica" formControlName="gce_grafica_edit">
+            <div *ngIf="editForm.get('gce_grafica_edit')?.touched && editForm.get('gce_grafica_edit')?.errors?.['required']" 
+            class="alert alert-danger">Este campo es requierido</div>
+        </div>
+        <!-- gce_ram -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+            <input class="form-control" type="text" name="gce_ram_edit" placeholder="Ram" formControlName="gce_ram_edit">
+            <div *ngIf="editForm.get('gce_ram_edit')?.touched && editForm.get('gce_ram_edit')?.errors?.['required']" 
+            class="alert alert-danger">Este campo es requierido</div>
+        </div>
+        <!-- gce_disco_duro -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+            <input class="form-control" type="text" name="gce_disco_duro_edit" placeholder="Disco" formControlName="gce_disco_duro_edit">
+            <div *ngIf="editForm.get('gce_disco_duro_edit')?.touched && editForm.get('gce_disco_duro_edit')?.errors?.['required']" 
+            class="alert alert-danger">Este campo es requierido</div>
+        </div>
+        <!-- gce_teclado -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+            <input class="form-control" type="text" name="gce_teclado_edit" placeholder="Teclado" formControlName="gce_teclado_edit">
+            <div *ngIf="editForm.get('gce_teclado_edit')?.touched && editForm.get('gce_teclado_edit')?.errors?.['required']" 
+            class="alert alert-danger">Este campo es requierido</div>
+        </div>
+        <!-- gce_mouse -->
+        <div class="mb-3 col-lg-4 col-sm-6">
+            <input class="form-control" type="text" name="gce_mouse_edit" placeholder="Mouse" formControlName="gce_mouse_edit">
+            <div *ngIf="editForm.get('gce_mouse_edit')?.touched && editForm.get('gce_mouse_edit')?.errors?.['required']" 
+            class="alert alert-danger">Este campo es requierido</div>
+        </div>
+        <!-- gce_pantalla -->
+        <div class="mb-3 col-sm-6 col-lg-6">
+            <input class="form-control" type="text" name="gce_pantalla_edit" placeholder="Pantalla" formControlName="gce_pantalla_edit">
+            <div *ngIf="editForm.get('gce_pantalla_edit')?.touched && editForm.get('gce_pantalla_edit')?.errors?.['required']" 
+            class="alert alert-danger">Este campo es requierido</div>
+        </div>
+        <!-- gce_estado -->
+        <label class="mb-3 col-sm-6 col-lg-6 position-relative">
+            <div class="position-absolute">Estado</div>
+            <select class="form-select" name="gce_estado_edit" formControlName="gce_estado_edit">
+            <option value="0">Inactivo</option>
+            <option value="1" selected>Activo</option>
+            </select>
+        </label>
+        <div class="col-6 mb-3 display-grid">
+            <button type="submit" class="btn btn-primary" (click)="onStateEdit('canceled')">
+            <i class="fa-solid fa-angles-left me-2 vertical-align-middle" style="font-size: 1.2em; color: ghostwhite;"></i>
+            Cancelar
+            </button>
+        </div>
+        <div class="col-6 mb-3 display-grid">
+            <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">
+            <i class="fas fa-plus-square me-2 vertical-align-middle" style="font-size: 1.2em;"></i>
+            Guardar Cambios
+            </button>
+        </div>
+    </form>
+</div>           
